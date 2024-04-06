@@ -1,0 +1,284 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Proxima Soft";
+  src: local("Proxima Soft Regular"), local("Proxima-Soft-Regular"),
+    url("/ProximaSoft-Regular.woff2") format("woff2"),
+    url("/ProximaSoft-Regular.woff") format("woff"),
+    url("/ProximaSoft-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Soft";
+  src: local("Proxima Soft Medium"), local("Proxima-Soft-Medium"),
+    url("/ProximaSoft-Medium.woff2") format("woff2"),
+    url("/ProximaSoft-Medium.woff") format("woff"),
+    url("/ProximaSoft-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Soft";
+  src: local("Proxima Soft Bold"), local("Proxima-Soft-Bold"),
+    url("/ProximaSoft-Bold.woff2") format("woff2"),
+    url("/ProximaSoft-Bold.woff") format("woff"),
+    url("/ProximaSoft-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: "Proxima Soft";
+}
+
+.ol {
+  list-style: decimal;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+.ul {
+  list-style: circle;
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+.icon {
+  border-radius: 50%;
+  transition: all ease-in 100ms;
+}
+
+.icon:hover {
+  border-radius: 1.3rem;
+}
+
+.tooltip {
+  z-index: -100;
+  opacity: 0;
+}
+.tooltip-container:hover ~ .tooltip {
+  z-index: 100;
+  opacity: 1;
+}
+
+input:focus {
+  outline: none !important;
+  border: 1px solid #7a97d1;
+}
+
+textarea:focus {
+  outline: none !important;
+}
+
+input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #3a4f7a;
+  opacity: 1; /* Firefox */
+}
+
+textarea::placeholder {
+  color: #232f49;
+  opacity: 1;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23fea1bf" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
+
+.searchbar::placeholder {
+  color: #3a4f7a !important;
+}
+
+.popup {
+  display: none;
+}
+.iconbutton:hover ~ .popup {
+  display: inline !important;
+}
+
+.iconbutton:hover .popup {
+  display: inline !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #232f49;
+  border-radius: 10px;
+}
+
+.darker::-webkit-scrollbar-track {
+  background: #1d283d;
+}
+
+.darker::-webkit-scrollbar-thumb {
+  background: #172031;
+  border-radius: 100px;
+}
+
+.darkest::-webkit-scrollbar-track {
+  background: #172031;
+  border-radius: 100px;
+}
+
+.darkest::-webkit-scrollbar-thumb {
+  background: #0d121c;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1d283d;
+  border-radius: 100px;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+em-emoji-picker {
+  --background-rgb: 233, 142, 173;
+  --category-icon-size: 24px;
+  --color-border-over: rgba(0, 0, 0, 0.1);
+  --color-border: #172031;
+  --font-family: "Proxima Soft";
+  --font-size: 20px;
+  --rgb-accent: 233, 142, 173;
+  --rgb-background: 29, 40, 61;
+  --rgb-color: 255, 134, 174;
+  --rgb-input: 23, 32, 49;
+  --rgb-input-background: 255, 235, 235;
+  --shadow: 5px 5px 15px -8px rgb(66, 66, 105);
+
+  height: 50vh;
+  min-height: 400px;
+  max-height: 800px;
+}
+
+@keyframes borderRadius {
+  0% {
+    border-radius: 999px;
+  }
+  30% {
+    border-radius: 1.75rem;
+  }
+  100% {
+    border-radius: 0.75rem;
+  }
+}
+.MsgOptions {
+  display: none;
+}
+
+.MsgMain:hover .MsgOptions {
+  display: flex;
+}
+
+input[type="date"] {
+  color: #4e6187;
+}
+
+div:focus,
+div:active {
+  outline: none !important;
+}
+
+/** CHECKBOX **/
+
+.checkbox {
+  margin-left: 10px;
+}
+.checkbox input[type="checkbox"] {
+  opacity: 0;
+}
+
+.checkbox label::before {
+  cursor: pointer;
+  content: "";
+  display: inline-block;
+
+  border-radius: 2px;
+  height: 16px;
+  width: 16px;
+
+  background-color: #1d283d;
+}
+
+.checkbox label::after {
+  cursor: pointer;
+  content: "";
+  display: inline-block;
+  height: 6px;
+  width: 9px;
+  border-color: #ffffff !important;
+  border-left: 2px solid;
+  border-bottom: 2px solid;
+
+  transform: rotate(-45deg);
+}
+
+.checkbox label {
+  position: relative;
+}
+.checkbox label::before,
+.checkbox label::after {
+  position: absolute;
+}
+
+.checkbox label::before {
+  top: 3px;
+  left: -22px;
+}
+.checkbox label::after {
+  left: -19px;
+  top: 7px;
+}
+
+.checkbox input[type="checkbox"] + label::after {
+  content: none;
+}
+
+.checkbox input[type="checkbox"]:checked + label::after {
+  content: "";
+}
+.checkbox input[type="checkbox"]:checked + label::before {
+  background-color: #fea1bf;
+}
+
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+  line-height: inherit !important;
+}
