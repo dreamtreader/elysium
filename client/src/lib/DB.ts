@@ -51,8 +51,11 @@ import { store } from "../components/redux/store"
 
 axios.defaults.withCredentials = true
 
+const baseURL = "http://localhost:5000" /// SWITCH WITH YOUR API DOMAIN (backend)
+/// .env works weirdly with typescript, couldn't implement it so I had to make do with this
+
 export const loginByToken = async (dispatch: Dispatch) => {
-  const url = "http://localhost:5000/user"
+  const url = baseURL + "/user";
   const username = localStorage.getItem("username")
   const password = localStorage.getItem("password")
   try {
@@ -75,7 +78,7 @@ export const loginByToken = async (dispatch: Dispatch) => {
 }
 
 export const Logout = async (dispatch: Dispatch) => {
-  const url = "http://localhost:5000/user/logout"
+  const url = baseURL + "/user/logout"
   try {
     const response: any = await axios.get(url)
 
@@ -92,7 +95,7 @@ export const Logout = async (dispatch: Dispatch) => {
   }
 }
 export const fetchUser = async (userId: string, dispatch: Dispatch) => {
-  const url = "http://localhost:5000/user" + userId
+  const url = baseURL + "/user" + userId;
   try {
     const response = await axios.get<partialUser>(url)
     if (response.data) {
@@ -110,7 +113,7 @@ export const SetLastReadMessage = async (
   channelId: string,
   messageId: string,
 ) => {
-  const url = "http://localhost:5000/user/lastReadMessages/" + channelId
+  const url = base URL + "/user/lastReadMessages/" + channelId
   try {
     const response = await axios.post(url, { messageId: messageId })
     if (response.data) {
@@ -182,7 +185,7 @@ export const getFilteredMessages = async ({
 }
 
 export const LoadChatData = async (dispatch: Dispatch) => {
-  const url = "http://localhost:5000/chat/"
+  const url = baseURL + "/chat/";
   try {
     const response: any = await axios.get(url, {
       withCredentials: true,
@@ -273,7 +276,7 @@ export const getServerMembers = async (
   serverId: string,
   dispatch: Dispatch,
 ) => {
-  const url = "http://localhost:5000/servers/" + serverId + "/members"
+  const url = baseURL + "/servers/" + serverId + "/members"
   const response = await axios.get(url, { withCredentials: true })
   if (response.data) {
     dispatch(usersAdded(response.data.users))
@@ -291,7 +294,7 @@ export const GetChannelMessages = async (
   dispatch: Dispatch,
   lastMessageDate?: string,
 ) => {
-  var url = "http://localhost:5000/channels/" + channelId + "/messages"
+  var url = baseURL + "/channels/" + channelId + "/messages"
   if (lastMessageDate) url = url + "?before=" + lastMessageDate
   try {
     const response = await axios.get(url, { withCredentials: true })
@@ -338,7 +341,7 @@ export const getPosts = async ({
   dispatch: Dispatch
 }) => {
   const sortField = store.getState().chat.postSortField
-  var url = `http://localhost:5000/servers/${serverId}/${topicId}/posts`
+  var url = baseURL + `/servers/${serverId}/${topicId}/posts`
   url += `?sortField=${sortField}`
   if (lastPost) url += `&lastPostSortVal=${lastPost[sortField]}`
   if (input) url += `&input=${input}`
@@ -373,7 +376,7 @@ export const getPost = async ({
   topicId: string
   dispatch: Dispatch
 }) => {
-  var url = `http://localhost:5000/servers/${serverId}/${topicId}/posts/${postId}`
+  var url = baseURL + `/servers/${serverId}/${topicId}/posts/${postId}`
   try {
     const response = await axios.get(url)
     if (response.data) {
@@ -395,7 +398,7 @@ export const deletePost = async ({
   topicId: string
   dispatch: Dispatch
 }) => {
-  var url = `http://localhost:5000/servers/${serverId}/${topicId}/posts/${postId}/delete`
+  var url = baseURL + `/servers/${serverId}/${topicId}/posts/${postId}/delete`
   const response = await axios.get(url)
   if (response.data) {
     dispatch(postRemoved({ _id: postId }))
@@ -419,7 +422,7 @@ export const createTopicPost = async ({
   tags?: string[]
   attachments?: string[]
 }) => {
-  const url = `http://localhost:5000/servers/${serverId}/${topicId}/posts`
+  const url = baseURL + `/servers/${serverId}/${topicId}/posts`
   try {
     const response = await axios.post(url, {
       title: title,
@@ -444,7 +447,7 @@ export const createServer = async (
   },
   dispatch: Dispatch,
 ) => {
-  const url = "http://localhost:5000/servers/create"
+  const url = baseURL + "/servers/create"
   try {
     const response = await axios.post(url, server)
     if (response.data) {
@@ -465,7 +468,7 @@ export const getSearchRecommendations = async (
   input: string,
   dispatch: Dispatch,
 ) => {
-  const url = "http://localhost:5000/servers/" + serverId + "/members/search"
+  const url = baseURL + "/servers/" + serverId + "/members/search"
   try {
     const response = await axios.get(url + "?q=" + input)
     if (response.data) {
